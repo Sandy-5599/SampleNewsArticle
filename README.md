@@ -1,5 +1,5 @@
 # SampleNewsArticle
-SampleNewsArticle project created with Android jetpack compse
+SampleNewsArticle project created with Android jetpack compose
 # Code Compilation Instructions:
  •	IDE/Plugin Versions: The code is expected to be compiled and run using an Android development environment such as Android Studio. The recommended version is the latest stable release Flamingo.
 •	Dependency Management: The code uses Gradle and java for dependency management. The required dependencies should be resolved automatically by the build system when the project is imported into Android Studio.
