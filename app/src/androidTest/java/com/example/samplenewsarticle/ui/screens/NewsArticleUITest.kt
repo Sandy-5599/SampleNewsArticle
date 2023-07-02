@@ -1,5 +1,6 @@
 package com.example.samplenewsarticle.ui.screens
 
+import android.content.Context
 import android.content.res.Resources
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -7,9 +8,11 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.samplenewsarticle.R
 import com.example.samplenewsarticle.data.model.Asset
 import com.example.samplenewsarticle.data.model.NewsArticles
 import org.junit.Before
@@ -22,13 +25,14 @@ class NewsArticleUITest {
 
     private lateinit var resources: Resources
     private lateinit var packageName: String
+    private lateinit var context: Context
 
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Before
     fun init() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        context = InstrumentationRegistry.getInstrumentation().targetContext
         packageName = context.packageName
         resources = context.resources
     }
@@ -40,7 +44,8 @@ class NewsArticleUITest {
             NewsArticleListScreen(
                 newsArticles = NewsArticles.newsArticlesMock,
                 isLoadingArticlesState = mutableStateOf(ApiCallState.LOADING),
-                openArticleCallback = {}
+                openArticleCallback = {},
+                onDialogClose = {}
             )
         }
 
@@ -57,7 +62,8 @@ class NewsArticleUITest {
             NewsArticleListScreen(
                 newsArticles = NewsArticles.newsArticlesMock,
                 isLoadingArticlesState = remember { mutableStateOf(ApiCallState.SUCCESS) },
-                openArticleCallback = {}
+                openArticleCallback = {},
+                onDialogClose = {}
             )
         }
 
@@ -83,7 +89,8 @@ class NewsArticleUITest {
             NewsArticleListScreen(
                 newsArticles = NewsArticles.newsArticlesNoAssetsMock,
                 isLoadingArticlesState = remember { mutableStateOf(ApiCallState.SUCCESS) },
-                openArticleCallback = {}
+                openArticleCallback = {},
+                onDialogClose = {}
             )
         }
         composeTestRule
@@ -99,14 +106,33 @@ class NewsArticleUITest {
             NewsArticleListScreen(
                 newsArticles = null,
                 isLoadingArticlesState = remember { mutableStateOf(ApiCallState.ERROR) },
-                openArticleCallback = {}
+                openArticleCallback = {},
+                onDialogClose = {}
             )
         }
 
         // Verify that the error message is displayed when there is an error loading the articles
         composeTestRule
-            .onNodeWithTag("errorScreen")
+            .onNodeWithTag(context.getString(R.string.error_screen))
             .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithText(context.getString(R.string.error_dialog_title))
+            .assertIsDisplayed()
+
+        composeTestRule
+            .onNodeWithText(context.getString(R.string.error_dialog_text))
+            .assertIsDisplayed()
+
+        // Click the OK button in the error dialog
+        composeTestRule
+            .onNodeWithText(context.getString(R.string.ok_button_text))
+            .assertIsDisplayed().performClick()
+
+        // Verify that the error dialog is dismissed
+        composeTestRule
+            .onNodeWithTag(context.getString(R.string.error_screen))
+            .assertDoesNotExist()
     }
 
     @Test

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SampleNewsArticle</string>
     <string name="error_code">ErrorCode</string>
+    <string name="error_screen">ErrorScreen</string>
     <string name="error_dialog_title">Error</string>
     <string name="error_dialog_text">Something Went Wrong!Try again later</string>
     <string name="open_id_create_token_error_message">openIDmessage</string>

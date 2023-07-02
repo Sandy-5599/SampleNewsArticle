@@ -84,22 +84,15 @@ fun NewsArticleListScreen(
                 }
 
                 ApiCallState.ERROR -> {
-                    Column(
-                        modifier = Modifier
-                            .testTag("errorScreen")
-                            .padding(16.dp)
-                    ) {
-                        //handle error scenario or show error page here
-
-                        MessageDialog(title = stringResource(id = R.string.error_dialog_title),
-                            message = stringResource(id = R.string.error_dialog_text),
-                            showDialog = showDialog,
-                            onClose = {
-                                showDialog.value = false
-                                onDialogClose()
-                            }
-                        )
-                    }
+                    //handle error scenario or show error page here
+                    MessageDialog(title = stringResource(id = R.string.error_dialog_title),
+                        message = stringResource(id = R.string.error_dialog_text),
+                        showDialog = showDialog,
+                        onClose = {
+                            showDialog.value = false
+                            onDialogClose()
+                        }
+                    )
                 }
             }
         }
