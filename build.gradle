@@ -2,171 +2,30 @@
 
 buildscript {
     ext.buildConfig = [
-            'compileSdk'            : 33,
-            'minSdk'                : 24,
-            'targetSdk'             : 34,
-            'composeVersion'        : '1.4.2',
-
-
-            // https://assets.adobedtm.com/6e780ef169d7/45ba211f8a9c/launch-ec34758798e1.json
-            // https://assets.adobedtm.com/6e780ef169d7/45ba211f8a9c/launch-ec34758798e1-rules.zip
-            'adobeEnvironmentId'    : '6e780ef169d7/45ba211f8a9c/launch-ec34758798e1',
-            // https://assets.adobedtm.com/6e780ef169d7/45ba211f8a9c/launch-71edef02947a-development.json
-            // https://assets.adobedtm.com/6e780ef169d7/45ba211f8a9c/launch-71edef02947a-development-rules.zip
-            'adobeEnvironmentIdTest': '6e780ef169d7/45ba211f8a9c/launch-71edef02947a-development',
+            'compileSdk'    : 33,
+            'minSdk'        : 24,
+            'targetSdk'     : 34,
+            'composeVersion': '1.4.2',
     ]
 
     repositories {
         google()
         mavenCentral()
-
-        // Used for Accompanist snapshots
-        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
-
-        // Used for R8 bug fixes not yet in AGP 7.1.0-alpha02.
-        maven { url 'https://storage.googleapis.com/r8-releases/raw' }
-
-        // license-gradle-plugin : licenseCheck
-        maven { url "https://plugins.gradle.org/m2/" }
-
-        maven { url "https://mvnrepository.com/artifact/io.fotoapparat.fotoapparat/library" }
     }
-
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.4.2'
-
-        classpath "com.android.tools:r8:8.0.40"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.43.2"
         classpath 'com.google.gms:google-services:4.3.15'
-
-        classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:0.16.1"
-        //        classpath "nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0"
     }
 }
 buildscript {
     ext {
-        android_gms_services_analytics_version = "17.0.0"
-
-        androidx_annotation_version = "1.2.0"
         androidx_appcompat_version = "1.6.1"
-        androidx_biometric = "1.2.0-alpha05"
-        androidx_browserVersion = "1.3.0"
-        androidx_cardview_version = "1.0.0"
-        androidx_collection_version = "1.1.0"
-        androidx_constraintlayout_version = "2.1.0"
-        androidx_core_ktx_version = "1.10.1"
-        androidx_core_version = "1.3.1"
-        androidx_drawerlayout_version = "1.1.0"
-        androidx_fragment_testing_version = "1.2.5"
-        androidx_fragment_version = "1.2.5"
-        androidx_fragment_ktx_version = '1.3.6'
-        androidx_hilt_version = "1.0.0"
-        androidx_hilt_navigation_compose_version = "1.0.0"
-        androidx_legacy_preference_version = "1.0.0"
-        androidx_legacy_support = "1.0.0"
-
-        androidx_lifecycle_common_version = "2.2.0"
-        androidx_lifecycle_extensions_version = "2.2.0"
-        androidx_lifecycle_version = "2.6.1"
-
-        androidx_multidex_version = "2.0.1"
-        androidx_navigation_common_version = "2.3.5"
-        androidx_navigation_fragment_ktx_version = "2.3.5"
-        androidx_navigation_runtime_ktx_version = "2.3.5"
-        androidx_navigation_runtime_version = "2.3.5"
-        androidx_navigation_ui_ktx_version = "2.3.5"
-        androidx_navigation_ui_version = "2.3.4"
-        androidx_preference_ktx_version = "1.1.1"
-        androidx_recyclerview_version = '1.2.1'
-        androidx_room_version = "2.5.1"
-        androidx_test_core_version = "1.3.0"
-        androidx_test_espresso_core_version = "3.5.1"
-        androidx_test_espresso_intents_version = "3.4.0"
-        androidx_test_ext_junit_version = "1.1.5"
-        androidx_test_ext_truth_version = "1.3.0"
-        androidx_test_rules_version = "1.3.0"
-        androidx_test_runner_version = "1.3.0"
-        androidx_vectordrawable_version = "1.1.0"
-        androidx_viewpager_version = "1.0.0"
-        androidx_viewpager2_version = "1.0.0"
-        androidx_work_runtime_version = "2.8.1"
-
-        barteksc_android_pdf_viewer_version = "2.8.2"
-        castorflex_verticalviewpager_version = "19.0.1"
-        com_facebook_shimmer = "0.5.0"
-
-        com_google_accompanist = "0.23.0"
-        com_google_guava_guava = "27.0.1-android"
-        com_google_dagger_hilt_android = '2.43.2'
-        com_google_dagger_compiler_version = "2.23.1"
-        com_google_mlkit_barcode_scanning = "17.1.0"
-        com_google_truth_version = "1.0.1"
-
-        // need to stay with this version of compose for MaterialDatePicker as it is crashing in newer version
-        // when we update to API level 34 we can update this library
-        // Need to test Date picker again.
         compose_version = "1.5.0-beta01"
         compose_compiler_version = "1.4.7"
-
-        doyaaaaaken_kotlin_cvs_jvm = "0.15.1"
-        easypermissions_version = "3.0.0"
-        emilsjolander_stickylistheaders_version = "2.7.0"
-        esotericsoftware_kryo_version = "2.24.0"
-        fast_csv_version = "2.0.0"
-        firebase_analytics_version = "21.3.0"
-        firebase_crashlytics_version = "18.3.7"
-        firebase_iid_version = "21.1.0"
-        firebase_messaging_version = '23.1.2'
-        firebase_ml_vision_version = "17.0.1"
-        google_android_material_version = "1.9.0"
-        google_code_gson_version = "2.8.7"
-        id_zelory_compressor_version = "2.1.0"
-        info_cukes_cucumber_android_version = "1.2.5"
-        info_cukes_cucumber_picocontainer_version = "1.2.5"
-        io_jsonwebtoken_jjwt_version = "0.9.1"
-        jakewharton_rxbinding2_version = "2.2.0"
-        jakewharton_rxrelay2_version = "2.1.1"
-        jakewharton_timber_version = "5.0.1"
-        junit_version = "4.13.2"
-        jacoco_version = "0.8.7"
-
-        kotlin_version = "1.8.10"
         kotlinx_coroutines_core_version = '1.6.4'
-
-        lifecycle_common_java8_version = "2.3.1"
-        mockito_all_version = "1.10.19"
-        net_openid_appauth = '0.11.1'
-        net_zetetic_android_database_sqlcipher = '4.5.2'
-        okhttp3_mockwebserver_version = "3.11.0"
-        org_mockito_core_version = "3.3.0"
-        org_mozilla_rhino_version = "1.7.7"
-        org_robolectric_version = "4.3.1"
-        pdfbox_android = "1.8.10.1"
-        play_services_gcm_version = "17.0.0"
-        play_services_maps_version = "17.0.1"
-        pl_droidsonroids_gif_drawable = '1.2.25'
-        powermock_api_mockito_version = "1.6.5"
-        powermock_module_junit4_version = "1.6.5"
-        ru_markwon_core_version = "4.2.0"
-        exoplayer_version = "2.18.7"
-
-        rxjava2_rxandroid_version = "2.1.1"
-        rxjava2_rxjava_version = "2.2.17"
-        rxjava2_rxkotlin_version = "2.4.0"
         squareup_okhttp3_version = '5.0.0-alpha.7'
         squareup_retrofit2_version = "2.9.0"
-
-        theartofdev_edmodo_image_cropper_version = "2.8.0"
-        tbuonomo_andrui_viewpagerdotsindicator = "4.1.2"
-
-        nimbus_jose_jwt = '9.24.2'
-        zxing_version = '3.5.0'
-
-        adobe_marketing_edgeidentity_version = '1.1.0'
-        adobe_marketing_edge_version = '1.3.2'
-        adobe_marketing_userprofile_version = "1.1.0"
-        adobe_marketing_core_version = '1.11.5'
 
     }
 }
