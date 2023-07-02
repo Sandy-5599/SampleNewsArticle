@@ -23,7 +23,7 @@ fun NewsApp(newsViewModel: NewsArticleViewModel) {
 
     NavHost(navController, startDestination = startDestination) {
         addWelcomePage(navController, newsViewModel)
-        addNewsArticlesPage(newsViewModel)
+        addNewsArticlesPage(navController,newsViewModel)
 
     }
 }
@@ -42,6 +42,7 @@ private fun NavGraphBuilder.addWelcomePage(
 }
 
 private fun NavGraphBuilder.addNewsArticlesPage(
+    navController: NavHostController,
     newsViewModel: NewsArticleViewModel
 ) {
     composable("newsArticles.route") {
@@ -49,9 +50,11 @@ private fun NavGraphBuilder.addNewsArticlesPage(
         NewsArticleListScreen(
             newsArticles = newsViewModel.newsArticles.value,
             isLoadingArticlesState = newsViewModel.isLoadingArticlesState,
-        ) { url ->
-            openWebView(url, context)
-        }
+            openArticleCallback ={ url ->
+                openWebView(url, context)
+            } ,
+            onDialogClose = {navController.navigate("welcome.route")}
+        )
     }
 }
 

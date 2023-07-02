@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">SampleNewsArticle</string>
     <string name="error_code">ErrorCode</string>
+    <string name="error_dialog_title">Error</string>
+    <string name="error_dialog_text">Something Went Wrong!Try again later</string>
     <string name="open_id_create_token_error_message">openIDmessage</string>
     <string name="continue_text">Continue</string>
     <string name="welcome_text">Welcome To News Articles Australia.Press continue to load latest News</string>
@@ -10,4 +12,7 @@
     <string name="news_articles_abstract">newsArticleAbstract</string>
     <string name="news_articles_item">newsArticleItem</string>
     <string name="news_articles">News Articles</string>
+    <string name="ok_button_text">OK</string>
+    <string name="alert_title">Alert!</string>
+    <string name="empty_list_message">No news articles found at the moment</string>
 </resources>
